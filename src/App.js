@@ -9,13 +9,11 @@ import Form from "./components/Form/Form";
 
 function App() {
 
-  const {tg,onClose,onToggleButton} = useTelegram()
+  const {tg} = useTelegram()
 
   useEffect(() => {
     tg.ready();
   }, [tg]);
-
-
 
   return (
     <div className="App">

@@ -11,18 +11,19 @@ const Form = () => {
   const {tg} = useTelegram();
 
   useEffect(() => {
-      tg.MainButton.setParams({
-          text: 'Отправить данные'
-      })
-  }, [])
+    tg.MainButton.setParams({
+        text: 'Отправить данные'
+    });
+  }, [tg.MainButton]);
 
   useEffect(() => {
-      if(!street || !country) {
-          tg.MainButton.hide();
-      } else {
-          tg.MainButton.show();
-      }
-  }, [country, street])
+    if(!street || !country) {
+        tg.MainButton.hide();
+    } else {
+        tg.MainButton.show();
+    }
+  }, [tg.MainButton, country, street]);
+
 
   const onChangeCountry = (e) => {
     setCountry(e.target.value)
