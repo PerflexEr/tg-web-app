@@ -8,8 +8,9 @@ function App() {
   const {tg,onClose,onToggleButton} = useTelegram()
 
   useEffect(() => {
-    tg.ready()
-  } , [])
+    tg.ready();
+  }, [tg]);
+
 
 
   return (
