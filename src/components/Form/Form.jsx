@@ -1,6 +1,6 @@
 import './Form.css'
 
-import React, { useState , useEffect } from 'react';
+import React, { useState , useEffect, useCallback } from 'react';
 import { useTelegram } from '../../hooks/useTelegram';
 const Form = () => {
 
@@ -24,7 +24,23 @@ const Form = () => {
     }
   }, [tg.MainButton, country, street]);
 
+  const onSendData = useCallback(() => {
+    const data = {
+      country,
+      street,
+      subject
+    }
+    tg.sendData(JSON.stringify(data))
+  })
 
+  useEffect(() => {
+    tg.WebApp.onEvent('mainButtonClicked' , onSendData)
+    return () => {
+      tg.WebApp.offEvent('mainButtonClicked' , onSendData)
+    }
+  }, [])
+  
+  
   const onChangeCountry = (e) => {
     setCountry(e.target.value)
   }
